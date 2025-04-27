@@ -1,0 +1,48 @@
+export const updateAudio = async (req,res)=>{
+    try {
+        const { title, artist, audioUrl } = req.body;
+      
+        // Find existing audio
+        const audio = await Audio.findById(req.params.id);
+        if (!audio) return res.status(404).json({ error: "Audio not found" });
+        
+        // console.log(audio.audioUrl, audioUrl)
+
+        // res.status(200).json({"audio url":audioUrl, "previos audio url":audio.audioUrl})
+      if (audio.user.toString() !== req.user._id) {
+        return res.status(401).json({ error: "Unauthorized update" });
+      }
+        // Delete old Cloudinary file if a new one is uploaded
+        if ( audioUrl && audio.audioUrl !== audioUrl) {
+          // Delete old Cloudinary file
+        //await cloudinary.uploader.destroy(audio.public_id, { resource_type: "video" });
+        // res.status(200).json({"inside audio url":audioUrl, "inside block previos audio url":audio.audioUrl})
+
+        const urlParts = audio.audioUrl.split("/");
+        const fileWithExt = urlParts.slice(-1)[0]; // e.g. song.mp3
+        const folder = urlParts.slice(-2)[0];      // e.g. audio_uploads
+        const publicId = `${folder}/${fileWithExt.split(".")[0]}`;
+  
+        // Optional: console.log to verify publicId
+        console.log("Deleting Cloudinary file:", publicId);
+  
+        // await cloudinary.uploader.destroy(publicId, { resource_type: "video" }).then(result=>console.log(result));
+
+               cloudinary.v2.uploader.destroy(publicId, {resource_type: "video", invalidate:true})
+        // cloudinaryResult= JSON.stringify(cloudinaryResult)
+        // console.log(cloudinaryResult)
+        }        
+        // Update audio details
+        audio.title = title;
+        audio.artist = artist;
+        audio.audioUrl = audioUrl;
+        console.log(audio.audioUrl)
+    
+        await audio.save();
+        res.json(audio);
+    
+      } catch (error) {
+        res.status(500).json({ error: error.message });
+      }
+    
+}

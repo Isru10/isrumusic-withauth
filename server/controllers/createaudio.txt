@@ -1,0 +1,28 @@
+  // title: String,
+    // artist: String,
+    // audiourl: String,
+    const {title,audioUrl,artist} = req.body;
+    if(!title || !audioUrl || !artist){
+        // res.status(400)
+        // return next(new Error("imgurl & videourl needed"))
+        return res.status(400).json({success:false , error:"title & audioUrl & artist needed"})
+    }
+        try{
+
+
+            console.log(title,artist,audioUrl)
+            const audio = await Audio.create({
+                title,
+                artist,
+                audioUrl,
+                user: req.user._id
+            });
+            res.status(201).json({success:true,audio});
+
+            // my aduio url : https://res.cloudinary.com/dni9bl2pk/video/upload/v1743767995/zsnxuyz8sutslrkb5rm1.mp3
+        }
+        catch(error){
+            console.log(error)
+            res.status(500).json({success:false , error:error.message})
+            // next(error);
+        }

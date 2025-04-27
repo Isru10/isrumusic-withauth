@@ -1,0 +1,81 @@
+/* AudioPlayerOverrides.css */
+
+/* Ensure the player blends into the card */
+.audio-player-wrapper .rhap_container {
+  background-color: transparent !important; /* Override default bg */
+  box-shadow: none !important; /* Remove default shadow */
+  padding: 0 !important; /* Remove default padding */
+  border-radius: 0.5rem; /* Match card rounding if needed */
+}
+
+/* ---- Progress Bar ---- */
+.rhap_progress-bar .rhap_progress-indicator {
+  background-color: #0891b2; /* Cyan-600 - Knob color */
+  box-shadow: 0 0 5px #0891b2; /* Optional glow */
+  width: 14px; /* Adjust size */
+  height: 14px; /* Adjust size */
+  top: -5px; /* Adjust vertical position */
+}
+
+.rhap_progress-bar .rhap_progress-filled {
+  background-color: #0e7490; /* Cyan-700 - Filled track color */
+  height: 4px; /* Adjust thickness */
+}
+
+.rhap_progress-bar .rhap_progress-section.rhap_progress-bar-loaded {
+   background-color: #4a5568; /* Gray-600 - Loaded but not played track color */
+   height: 4px; /* Adjust thickness */
+}
+
+.rhap_progress-bar {
+  background-color: #2d3748; /* Gray-800 - Empty track color */
+  height: 4px; /* Adjust thickness */
+}
+
+/* ---- Buttons ---- */
+.rhap_button-clear {
+  color: #a0aec0; /* Gray-400 - Icon color */
+}
+.rhap_button-clear:hover {
+  color: #e2e8f0; /* Gray-200 - Icon hover color */
+}
+.rhap_play-pause-button {
+   font-size: 40px; /* Make play/pause bigger */
+   width: 40px;
+   height: 40px;
+}
+
+/* ---- Time Displays ---- */
+.rhap_time {
+  color: #a0aec0; /* Gray-400 */
+  font-size: 0.875rem; /* text-sm */
+}
+
+/* ---- Volume Controls ---- */
+.rhap_volume-bar {
+  background-color: #2d3748; /* Gray-800 */
+  height: 4px;
+}
+.rhap_volume-indicator {
+  background-color: #0891b2; /* Cyan-600 */
+   box-shadow: 0 0 3px #0891b2;
+   width: 12px;
+   height: 12px;
+   top: -4px;
+}
+.rhap_volume-button {
+  color: #a0aec0; /* Gray-400 */
+}
+.rhap_volume-button:hover {
+  color: #e2e8f0; /* Gray-200 */
+}
+
+/* Hide unwanted elements if needed */
+/* .rhap_additional-controls { display: none; } */
+/* .rhap_volume-controls { display: none; } */
+.rhap_rewind-button,
+.rhap_forward-button {
+  display: none; /* Hide jump buttons if showJumpControls={false} isn't enough */
+}
+
+/* You might need !important occasionally if the library's base styles are very specific */
