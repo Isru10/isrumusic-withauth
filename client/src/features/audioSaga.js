@@ -59,7 +59,7 @@ function* uploadFileSaga(action) {
 
 // API function to fetch songs from MongoDB
 const fetchSongs = async () => {
-  const response = await axios.get("http://localhost:5000/api/audio-upload",{
+  const response = await axios.get("https://isrumusic-backend.onrender.com/api/audio-upload",{
     withCredentials: true, // ✅ send cookies (including your jwt)
   }); // Fetching stored song URLs
   return response.data;
@@ -81,7 +81,7 @@ function* fetchAudioSaga() {
 function* updateAudioSaga(action) {
   try {
     const { id, title, artist, audioUrl } = action.payload;
-    const response = yield call(axios.post, `http://localhost:5000/api/audio-upload/${id}`, {
+    const response = yield call(axios.post, `https://isrumusic-backend.onrender.com/api/audio-upload/${id}`, {
       title,
       artist,
       audioUrl,
@@ -102,7 +102,7 @@ function* updateAudioSaga(action) {
 
 function* deleteAudioSaga(action) {
   try {
-    const response = yield call(axios.delete, `http://localhost:5000/api/audio-upload/${action.payload}`,{
+    const response = yield call(axios.delete, `https://isrumusic-backend.onrender.com/api/audio-upload/${action.payload}`,{
       withCredentials: true,
     });
     if (response.data.message === "Audio deleted successfully"){
