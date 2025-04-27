@@ -7,13 +7,7 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-  ],
-  server:{
-    proxy:{  
-      '/api':{
-      target: 'https://isrumusic-backend.onrender.com/',
-      changeOrigin: true 
-    } }
-  }
-  
+  ],  
 })
+
+
