@@ -35,14 +35,26 @@ const upload = multer({ storage });
   })
 
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },  credentials: true,               // ✅ Allow cookies
+  origin: process.env.FRONTEND_URL,  // Make sure this is the correct URL for your frontend
+  credentials: true, 
 }));
+
+
+
+
+
+
+
+
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },  credentials: true,               // ✅ Allow cookies
+// }));
 app.use(express.json()); 
 app.use(cookieParser());
 
