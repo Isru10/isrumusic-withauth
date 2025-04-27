@@ -17,6 +17,8 @@ import authRoutes from "./routes/userRoutes.js"
 import cookieParser from "cookie-parser";
 dotenv.config();
 const app  = express();
+app.use(cookieParser());
+
 const PORT = process.env.PORT || 5000;
 const __dirname = path.resolve();
 const allowedOrigins = [process.env.FRONTEND_URL];
@@ -38,6 +40,8 @@ app.use(cors({
   origin: process.env.FRONTEND_URL,  // Make sure this is the correct URL for your frontend
   credentials: true, 
 }));
+app.use(express.json()); 
+
 
 
 
@@ -55,8 +59,6 @@ app.use(cors({
 //     }
 //   },  credentials: true,               // ✅ Allow cookies
 // }));
-app.use(express.json()); 
-app.use(cookieParser());
 
 
 app.use("/api/videos",videoRoutes)
