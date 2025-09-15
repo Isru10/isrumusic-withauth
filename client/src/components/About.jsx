@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 import {
     FaReact, FaNodeJs, FaServer, FaCloud, FaDatabase, FaCogs, FaSyncAlt, FaBell, FaPlay, FaPalette
 } from 'react-icons/fa';
@@ -77,7 +77,7 @@ const About = () => {
             variants={itemVariants}
             className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed"
           >
-            Hi there! I'm Yohanan, the developer behind this audio management application. IsruMusic was built as a [Personal Project / Learning Exercise / Portfolio Piece ] to explore modern web technologies and create a simple, functional platform for handling audio files.
+            Hi there!. IsruMusic was built as a [Personal Project / Learning Exercise / Portfolio Piece ] to explore modern web technologies and create a simple, functional platform for handling audio files.
           </motion.p>
             <motion.a href="https://github.com/Isru10/" target="_blank" variants={itemVariants} className="mt-4 inline-block text-cyan-400 hover:text-cyan-300">View on GitHub → </motion.a>
         </motion.section>
